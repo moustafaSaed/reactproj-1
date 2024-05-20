@@ -1,0 +1,15 @@
+footer {
+    background-color: #ccc;
+    height: 10vh;
+}
+footer div {
+    color: var(--clr-main);
+    font-size: 18px;
+}
+footer div a {
+    display: inline-block;
+    margin-left: 25px;
+    color: indigo;
+    font-size: 24px;
+    text-transform: capitalize;
+}

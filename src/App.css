@@ -1,0 +1,143 @@
+:root {
+    --clr-main: darkslateblue;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(223, 224, 224);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+input,
+input:focus {
+    border: none;
+    outline: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+.container {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.flx-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flx-arround {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flx-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxed {
+    background-color: #eee;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 5px 10px;
+    text-transform: capitalize;
+}
+.btn {
+    padding: 5px 10px;
+    border: 1px solid #000;
+    width: fit-content;
+    border-radius: 5px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all .3s;
+}
+.btn:hover {
+    opacity: .8;
+    transform: translateY(-2px);
+}
+.drk-btn {
+    background-color: var(--clr-main);
+    color: white;
+}
+.light-btn {
+    color: var(--clr-main);
+    background-color: white;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+.gap-10 {
+    gap: 10px;
+}
+.cntnt {
+    height: 75vh;
+}
+
+.section-hdr {
+    text-align: center;
+    margin: 25px auto;
+    color: var(--clr-main);
+    border-bottom: 3px solid #726f6f;
+    padding-bottom: 8px;
+    width: 16vw;
+    text-transform: capitalize;
+}
+
+/* Counter */ 
+.counter .res {
+    text-align: center;
+    margin: 25px 0;
+    color: indigo;
+}
+
+/* CSS Section */
+.css {}
+.css form {}
+form > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50vw;
+}
+form > div label {
+    color: var(--clr-main);
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+form > div input {
+    width: 88px;
+    text-align: center;
+    padding: 2px;
+    margin-bottom: 11px;
+    border-radius: 4px;
+}
+form input[type="reset"],
+.apply {
+    display: block;
+    margin: 15px 15px 15px auto;
+}
+form > div .clr-inp {
+    margin-right: 16px;
+}
+form > div .size-inp {}
+
+.css .res {}
