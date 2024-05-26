@@ -8,7 +8,7 @@ import Html from './Pages/Html';
 import Css from './Pages/Css.jsx'
 import SignIn from './Pages/Login/SignIn.jsx';
 import SignUp from './Pages/Login/SignUp.jsx';
-
+  
 const router = createBrowserRouter([
   {path: "/", element: <Home />},
   {path: "/css", element: <Css />},
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
 
 function App() {
   const {mode} = useContext(DataContext);
-
+  
   return (
     <div className={`${mode}`}>
       <RouterProvider router={router} />

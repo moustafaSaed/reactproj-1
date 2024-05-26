@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Components/General/Header/Header';
 import Footer from '../Components/General/Footer/Footer';
 import { Helmet } from 'react-helmet-async';
-
-
+import { useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/config';
 
 const Html = () => {
+    const go = useNavigate();
+    const [user, loading, error] = useAuthState(auth);
+    useEffect(()=>{
+        if(!user){
+            console.log("failed");
+            go('/');
+        }else{
+            console.log("success")
+        }
+    },[user]);
+
     return (
         <div>
             <Helmet>

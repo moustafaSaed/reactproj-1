@@ -1,16 +1,14 @@
 import React, { useContext, useState } from 'react';
 import "./header.css"
 import DataContext from '../../../Context/Context';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '../../../firebase/config';
 import { signOut } from "firebase/auth";
 
 
-
-
-
 const Header = () => {
+    const go = useNavigate();
     const [user, loading, error] = useAuthState(auth);
     const [x, setX] = useState('hide');
     const toggleMenu = () => {
@@ -49,6 +47,8 @@ const Header = () => {
                         <Link onClick={() => {
                             signOut(auth).then(() => {
                                 // Sign-out successful.
+                                go("/");
+
                             }).catch((error) => {
                                 // An error happened.
                             });

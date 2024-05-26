@@ -24,3 +24,6 @@
     padding: 15px 25px;
     border-radius: 5px;
 }
+.Dark .nav li a:hover, .nav li a.active {
+    background-color: #009688;
+}
