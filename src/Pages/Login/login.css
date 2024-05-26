@@ -1,0 +1,75 @@
+/* Sign In */
+.sign-in {
+}
+.main {
+    flex-direction: column;
+}
+form {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 65px;
+    outline: 4px solid #aaa;
+    border-radius: 0px 15px;
+    box-shadow: 0 10px 10px 1px darkslategray;
+}
+@media (max-width: 776px) {
+    form {
+        width: 60vw;
+        padding: 30px 30px;
+    }
+}
+form h2 {
+    font-size: 32px;
+    color: darkslategrey;
+    text-transform: capitalize;
+    margin-bottom: 28px;
+}
+form input {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid darkslategrey;
+    font-size: 17px;
+}
+form input[type="email"] {}
+form input[type="password"] {}
+form input[type="button"] {
+    background-color: rgb(22, 86, 88);
+    color: white;
+    text-transform: capitalize;
+    cursor: pointer;
+    box-shadow: 0px 33px 8px -20px rgb(17, 156, 156);
+    transition: all .1s;
+}
+form input[type="button"]:hover {
+    opacity: .9;
+    /* margin-bottom: 14px; */
+    box-shadow: 0px 42px 10px -20px rgb(17, 156, 156);
+
+}
+
+.out-lnk {
+    margin-top: 35px;
+    font-size: 22px;
+    text-transform: capitalize;
+}
+.out-lnk p {
+    color: darkslategray;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.out-lnk a {
+    color: darkslateblue;
+    font-weight: bolder;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+    transition: all .4s;
+}
+.out-lnk a:hover {
+    margin-left: 15px;
+}
+.out-lnk a i {
+    font-size: 15px;
+    margin-left: 5px;
+}

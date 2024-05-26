@@ -1,0 +1,26 @@
+.Dark {
+    background-color: rgb(29, 50, 50);
+    color: white;
+}
+.Dark header,
+.Dark footer {
+    background-color: darkslategray;
+}
+.Dark form h2 {
+    color: white;
+}
+.Dark form input[type='button'] {
+    background-color: white;
+    color: darkslategrey;
+    box-shadow: 0px 33px 8px -20px rgb(255, 255, 255);
+}
+.Dark form input[type="button"]:hover {
+    opacity: .9;
+    /* margin-bottom: 14px; */
+    box-shadow: 0px 42px 10px -20px rgb(255, 255, 255);
+}
+.Dark .out-lnk {
+    background-color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+}

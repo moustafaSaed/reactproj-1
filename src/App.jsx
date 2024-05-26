@@ -1,29 +1,31 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
 import Home from './Pages/Home';
-import Counter from './Pages/Counter';
-import Css from './Pages/Css';
-import Form from './Pages/Form';
+import { useContext } from 'react';
+import DataContext from './Context/Context';
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import Js from './Pages/Js';
+import Html from './Pages/Html';
+import Css from './Pages/Css.jsx'
+import SignIn from './Pages/Login/SignIn.jsx';
+import SignUp from './Pages/Login/SignUp.jsx';
+
+const router = createBrowserRouter([
+  {path: "/", element: <Home />},
+  {path: "/css", element: <Css />},
+  {path: "/js", element: <Js />},
+  {path: "/html", element: <Html />},
+  {path: "/signin", element: <SignIn />},
+  {path: "/signup", element: <SignUp />},
+]);
 
 function App() {
-
+  const {mode} = useContext(DataContext);
 
   return (
-    <>
-      <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Home />}></Route>
-          <Route path='/mous/counter' element={<Counter />}></Route>
-          <Route path='/mous/css' element={<Css />}></Route>
-          <Route path='/mous/form' element={<Form />}></Route>
-        </Routes>
-      </BrowserRouter>
-      <Footer />
-    </>
-  )
+    <div className={`${mode}`}>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -32,7 +32,12 @@ ol {
     padding-left: 80px;
     padding-right: 80px;
 }
-
+@media (max-width: 776px) {
+    .container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
 .flx-between {
     display: flex;
     align-items: center;
@@ -100,7 +105,23 @@ ol {
     width: 16vw;
     text-transform: capitalize;
 }
-
+.vh-84 {
+    height: 84vh;
+}
+.main-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: none;
+    
+}
+@media (max-width: 776px) {
+    .main-grid {
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: auto 1fr;
+        justify-content: center;
+    }
+}
 /* Counter */ 
 .counter .res {
     text-align: center;

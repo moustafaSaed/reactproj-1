@@ -1,0 +1,154 @@
+header {
+    background-color: #009688;
+    color: white;
+    font-size: 24px;
+    text-transform: capitalize;
+    position: relative;
+}
+header .container {
+    height: 8vh;
+}
+header .container .logo {
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+header .container .nav {}
+.nav li {}
+.nav li a {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all .3s;
+}
+.nav li a:hover,
+.nav li a.active {
+    background-color: #009688;
+    background-color: darkslategrey;
+}
+.logout-icn {
+    margin-left: 30px;
+    font-size: 24px;
+    text-shadow: 1px 2px 2px #000;
+    cursor: pointer;
+    transition: all .3s;
+}
+.logout-icn:hover {
+    margin-bottom: 5px;
+}
+.logout-icn i {
+    margin-left: 5px;
+}
+header .icon {
+    display: none;
+    cursor: pointer;
+}
+header .icon i {
+    transition: all .5s;
+}
+header .icon:hover i {
+    transform: rotate(-90deg);
+}
+.nav-when-small {
+    padding: 10px;
+    border-top: 1px solid;
+}
+.nav-when-small.show {
+    display: show;
+}
+.nav-when-small.hide {
+    display: none;
+}
+.nav-when-small li {}
+.nav-when-small li.logout {
+    text-align: end;
+    transition: all .3s;
+}
+.nav-when-small li.logout:hover {
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+.nav-when-small li a {
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: 11px;
+    border-radius: 6px;
+    transition: all .4s;
+    width: 80%;
+    margin: 10px auto;
+}
+.nav-when-small li a:hover,
+.nav-when-small li a.active {
+    background-color: darkslategrey;
+}
+.err {
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 32px;
+    background-color: indianred;
+    width: 65vw;
+    border: 3px solid;
+}
+.preLogin {
+    font-size: 26px;
+    flex-direction: column;
+}
+.preLogin a {}
+.preLogin a .btnX {
+    padding: 20px 80px;
+    margin-bottom: 25px;
+    border: 3px solid white;
+    border-radius: 20px 0;
+    transition: all .3s;
+    text-transform: capitalize;
+
+}
+.preLogin a .btnX:hover {
+    opacity: .9;
+    transform: scale(1.2) rotate(1deg);
+}
+.preLogin a .btnX.in {
+    background-color: darkslategray;
+    color: #fff;
+}
+.preLogin a .btnX.up {
+    background-color: darkslateblue;
+    color: #fff;
+}
+.logo-txt {
+    display: inline-block;
+    text-transform: capitalize;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: darkslateblue;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .4s;
+}
+.logo-txt:hover {
+    transform: scaleX(1.4);
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+
+
+
+@media (max-width: 776px) {
+    .nav {
+        display: none;
+    }
+    header .icon {
+        display: block;
+    }
+    header .container .logo {
+        font-size: 24px;
+        letter-spacing: 0px;
+        font-weight: 700;
+    }
+}
+@media (min-width: 776px) {
+    .nav-when-small {
+        display: none;
+    }
+}

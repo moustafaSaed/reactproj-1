@@ -1,0 +1,22 @@
+footer {
+    font-size: 24px;
+    background-color: #009688;
+    color: white;
+}
+@media (max-width: 406px) {
+    footer {
+        font-size: 14px;
+    }
+}
+footer .container {
+    height: 8vh;
+}
+footer .container i {
+    color: indianred;
+    margin: auto 20px;
+}
+footer .container span {
+    text-transform: capitalize;
+    color: indianred;
+    margin: auto 20px;
+}
