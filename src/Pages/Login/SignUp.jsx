@@ -23,11 +23,11 @@ const SignUp = () => {
             </Helmet>
             <Header />
             <div className='flx-center main' style={{ height: "84vh" }}>
-               {!errorState && <form action="">
+                {!errorState && <form action="">
                     <h2>Regist at <span className="logo-txt">muslim</span></h2>
                     {/* <input type="text" placeholder='username: omarkhattab114' /> */}
-                    <input onChange={(e) => {setMail(e.target.value)}} required type="email" placeholder='Ex: a@b.com' />
-                    <input onChange={(e) => {setPass(e.target.value)}} required type="password" placeholder='Password' />
+                    <input onChange={(e) => { setMail(e.target.value) }} required type="email" placeholder='Ex: a@b.com' />
+                    <input onChange={(e) => { setPass(e.target.value) }} required type="password" placeholder='Password' />
                     {/* <input type="password" placeholder='Confirm Password' /> */}
                     <input className='' type="button" value="regist" onClick={(e) => {
                         e.preventDefault();
@@ -39,7 +39,7 @@ const SignUp = () => {
                                 navigate("/");
                                 // ...
                             })
-                            .catch((error) => { 
+                            .catch((error) => {
                                 const errorCode = error.code;
                                 const errorMessage = error.message;
                                 setErrState(true);
@@ -60,15 +60,15 @@ const SignUp = () => {
                                 // ..
                             });
                     }} />
-                </form> }
+                </form>}
                 {!errorState && <div className='out-lnk'>
                     <p>already have an account ? </p>
                     <Link to='/signin'>
                         sign in
                         <i className="fa-solid fa-arrow-up-right-from-square"></i>
                     </Link>
-                </div> }
-                {errorState && 
+                </div>}
+                {errorState &&
                     <div className="err">
                         {errCode}
                     </div>
