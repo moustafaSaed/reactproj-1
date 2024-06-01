@@ -1,0 +1,31 @@
+.profile {}
+
+.profile .container {}
+
+.profile .container h1 {
+    text-align: center;
+    font-size: 36px;
+    color: darkslategrey;
+    margin: 35px auto;
+}
+
+.profile .container .info {
+    padding: 22px;
+    border: 2px solid white;
+    border-radius: 8px;
+}
+
+.profile .container .info div {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: darkslateblue;
+    font-weight: bold;
+}
+
+.profile .container .info div span {
+    color: cadetblue;
+}
+.profile .container .btn {
+    display: block;
+    margin: 5px 5px 5px auto;
+}

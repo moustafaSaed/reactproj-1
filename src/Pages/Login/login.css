@@ -3,8 +3,9 @@
 }
 .main {
     flex-direction: column;
+    position: relative;
 }
-form {
+form.sign-in {
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -19,22 +20,22 @@ form {
         padding: 30px 30px;
     }
 }
-form h2 {
+form.sign-in h2 {
     font-size: 32px;
     color: darkslategrey;
     text-transform: capitalize;
     margin-bottom: 28px;
 }
-form input {
+form.sign-in input {
     margin-bottom: 12px;
     padding: 10px;
     border-radius: 5px;
     border: 2px solid darkslategrey;
     font-size: 17px;
 }
-form input[type="email"] {}
-form input[type="password"] {}
-form input[type="button"] {
+form.sign-in input[type="email"] {}
+form.sign-in input[type="password"] {}
+form.sign-in input[type="button"] {
     background-color: rgb(22, 86, 88);
     color: white;
     text-transform: capitalize;
@@ -42,11 +43,24 @@ form input[type="button"] {
     box-shadow: 0px 33px 8px -20px rgb(17, 156, 156);
     transition: all .1s;
 }
-form input[type="button"]:hover {
+form.sign-in input[type="button"]:hover {
     opacity: .9;
     /* margin-bottom: 14px; */
     box-shadow: 0px 42px 10px -20px rgb(17, 156, 156);
 
+}
+.forget-link {
+    width: fit-content;
+    margin: 22px auto 0 auto;
+    color: #FF5722;
+    text-transform: capitalize;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all .5s;
+}
+.forget-link:hover {
+    color: #4caf50;
+    font-size: 18px;
 }
 
 .out-lnk {
@@ -72,4 +86,91 @@ form input[type="button"]:hover {
 .out-lnk a i {
     font-size: 15px;
     margin-left: 5px;
+}
+
+.try-again {
+    display: block;
+    background-color: darkseagreen;
+    padding: 5px 15px;
+    width: fit-content;
+    margin: 12px 12px 12px auto;
+    border-radius: 5px;
+    border: 2px solid;
+    color: white;
+    cursor: pointer;
+    transition: all .3s;
+}
+.try-again:hover {
+    background-color: rgb(86, 157, 86);
+    margin: 12px 35px 12px auto;
+    transform: rotate(2deg);
+}
+.loading {
+    font-size: 36px;
+    color: darksalmon;
+    font-weight: bold;
+}
+form.forgot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    background-color: #aaa;
+    color: darkslategrey;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    border: 3px solid white;
+    transition: all 1s;
+}
+form.forgot.hide {
+    transform: translate(-50%, -100vh) scale(0);
+}
+form.forgot.show {
+    transform: translate(-50%, -50%) scale(1);
+}
+form.forgot input {
+    background-color: #fff;
+    padding: 5px 8px;
+    margin: 20px auto;
+    border-radius: 5px;
+    font-size: 22px;
+    color: darkslategrey;
+}
+form.forgot button {
+    background-color: cadetblue;
+    color: white;
+    padding: 5px 30px;
+    font-size: 16px;
+    border: 2px solid white;
+    margin-bottom: 15px;
+}
+form.forgot .mess {
+    background-color: darkseagreen;
+    color: #fff;
+    padding: 6px 22px;
+    border-radius: 10px;
+    border: 1px solid;
+    transition: all 1s;
+    transform: scale(0);
+}
+form.forgot .mess.show{
+    transform: scale(1);
+}
+form.forgot .close-icn {
+    
+}
+form.forgot .close-icn i {
+    margin: 5px 5px 5px auto;
+    cursor: pointer;
+    color: white;
+    transition: all .8s;
+}
+form.forgot .close-icn i:hover {
+    transform: rotate(180deg);
+    color: red;
+    font-size: 26px;
 }

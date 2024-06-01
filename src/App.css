@@ -1,3 +1,13 @@
+/*
+    || TABLE OF CONTENT :
+        -- GENERAL CODES [body,ul,a,container,etc..]
+        -- SMALL LIBRARY [flx,btn,etc..]
+        -- ERROR PAGE STYLE
+        --
+*/
+
+
+/*  GENERAL  */
 :root {
     --clr-main: darkslateblue;
 }
@@ -5,6 +15,8 @@
 body {
     font-family: 'Times New Roman', Times, serif;
     background-color: rgb(223, 224, 224);
+    color: #795548;
+    color: #009688;
 }
 
 * {
@@ -27,17 +39,24 @@ ul,
 ol {
     list-style: none;
 }
-
 .container {
     padding-left: 80px;
     padding-right: 80px;
 }
+main {
+    min-height: 84vh;
+    padding: 30px 0;
+}
+
+
 @media (max-width: 776px) {
     .container {
         padding-left: 40px;
         padding-right: 40px;
     }
 }
+
+/*  SMALL LIBRARY  */
 .flx-between {
     display: flex;
     align-items: center;
@@ -65,7 +84,7 @@ ol {
 }
 .btn {
     padding: 5px 10px;
-    border: 1px solid #000;
+    border: 2px solid;
     width: fit-content;
     border-radius: 5px;
     text-transform: capitalize;
@@ -84,6 +103,14 @@ ol {
     color: var(--clr-main);
     background-color: white;
 }
+.danger-btn {
+    background-color: indianred;
+    color: white;
+    transition: all .5s;
+}
+.danger-btn:hover {
+    scale: 1.2;
+}
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -92,10 +119,9 @@ ol {
 .gap-10 {
     gap: 10px;
 }
-.cntnt {
+/* .cntnt {
     height: 75vh;
-}
-
+} */
 .section-hdr {
     text-align: center;
     margin: 25px auto;
@@ -105,9 +131,9 @@ ol {
     width: 16vw;
     text-transform: capitalize;
 }
-.vh-84 {
+/* .vh-84 {
     height: 84vh;
-}
+} */
 .main-grid {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -122,43 +148,22 @@ ol {
         justify-content: center;
     }
 }
-/* Counter */ 
-.counter .res {
-    text-align: center;
-    margin: 25px 0;
-    color: indigo;
-}
 
-/* CSS Section */
-.css {}
-.css form {}
-form > div {
+
+/* Err404 */
+.error-page {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    width: 50vw;
 }
-form > div label {
-    color: var(--clr-main);
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: capitalize;
+.error-page h1 {
+    color: crimson;
+    margin: 35px auto;
 }
-form > div input {
-    width: 88px;
-    text-align: center;
-    padding: 2px;
-    margin-bottom: 11px;
-    border-radius: 4px;
+.error-page .sorry {
+    color: grey;
 }
-form input[type="reset"],
-.apply {
-    display: block;
-    margin: 15px 15px 15px auto;
+.error-page p {
+    font-size: 26px;
 }
-form > div .clr-inp {
-    margin-right: 16px;
-}
-form > div .size-inp {}
-
-.css .res {}

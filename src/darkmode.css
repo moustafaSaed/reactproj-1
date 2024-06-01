@@ -24,6 +24,22 @@
     padding: 15px 25px;
     border-radius: 5px;
 }
-.Dark .nav li a:hover, .nav li a.active {
+.Dark .nav li a:hover, .Dark .nav li a.active {
     background-color: #009688;
+}
+
+.Dark .profile .container h1 {
+    color: #009688;
+}
+.Dark .profile .container .info {
+    border: 2px solid #009688;
+}
+.Dark .profile .container .info div {
+    color: #fff;
+}
+.Dark .profile .container .info div span {
+    color: #7ad5d8;
+}
+.Dark .profile .container .info div span.un-ver {
+    color: indianred !important;
 }

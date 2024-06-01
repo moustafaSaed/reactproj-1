@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useContext, useState } from 'react';
 import "./header.css"
 import DataContext from '../../../Context/Context';
@@ -9,11 +10,13 @@ import { signOut } from "firebase/auth";
 
 const Header = () => {
     const go = useNavigate();
+    // @ts-ignore
     const [user, loading, error] = useAuthState(auth);
     const [x, setX] = useState('hide');
     const toggleMenu = () => {
         x == 'hide' ? setX('show') : setX('hide');
     }
+    // @ts-ignore
     const { mode, sun, changeMode, toggleSun } = useContext(DataContext);
 
 
@@ -34,29 +37,38 @@ const Header = () => {
                     <ul className="nav flx-between gap-10">
                         {!user && <li><NavLink to="/signin">sign in</NavLink></li>}
                         {!user && <li><NavLink to="/signup">sign up</NavLink></li>}
-                        {user &&<li><NavLink to="/html" className={({ isActive, isPending }) =>
+                        {user && <li><NavLink to="/html" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>html</NavLink></li> }
-                        {user &&<li><NavLink to="/css" className={({ isActive, isPending }) =>
+                        }>html</NavLink></li>}
+                        {user && <li><NavLink to="/todo" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>css</NavLink></li> }
-                        {user &&<li><NavLink to="/js" className={({ isActive, isPending }) =>
+                        }>todo</NavLink></li>}
+                        {/* {user && <li><NavLink to="/css" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>js</NavLink></li> }
-                    {user &&
-                        <Link onClick={() => {
-                            signOut(auth).then(() => {
-                                // Sign-out successful.
-                                go("/");
+                        }>css</NavLink></li>} */}
+                        {user && <li><NavLink to="/profile" className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }>Profile</NavLink></li>}
+                        {/* {user &&<li><NavLink to="/js" className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }>js</NavLink></li> } */}
+                        {user &&
+                            <
+// @ts-ignore
+                            Link onClick={() => {
+                                signOut(auth).then(() => {
+                                    // Sign-out successful.
+                                    go("/");
 
-                            }).catch((error) => {
-                                // An error happened.
-                            });
-                        }} className='logout-icn'>
-                            log out |
-                            <i className="fa-solid fa-arrow-right-to-bracket"></i>
-                        </Link>
-                    }
+                                // @ts-ignore
+                                }).catch((error) => {
+                                    // An error happened.
+                                });
+                            }} className='logout-icn'>
+                                log out |
+                                <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                            </Link>
+                        }
                     </ul>
                 </div>
                 <div className="icon" onClick={() => toggleMenu()}>
@@ -66,27 +78,38 @@ const Header = () => {
             <ul className={`nav-when-small ${x}`}>
             {!user && <li><NavLink to="/signin">sign in</NavLink></li>}
                         {!user && <li><NavLink to="/signup">sign up</NavLink></li>}
-                        {user &&<li><NavLink to="/html" className={({ isActive, isPending }) =>
+                        {user && <li><NavLink to="/html" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>html</NavLink></li> }
-                        {user &&<li><NavLink to="/css" className={({ isActive, isPending }) =>
+                        }>html</NavLink></li>}
+                        {user && <li><NavLink to="/todo" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>css</NavLink></li> }
-                        {user &&<li><NavLink to="/js" className={({ isActive, isPending }) =>
+                        }>todo</NavLink></li>}
+                        {/* {user && <li><NavLink to="/css" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>js</NavLink></li> }
-                    {user &&
-                        <li className='logout'><Link onClick={() => {
-                            signOut(auth).then(() => {
-                                // Sign-out successful.
-                            }).catch((error) => {
-                                // An error happened.
-                            });
-                        }} className='logout-icn'>
-                            log out |
-                            <i className="fa-solid fa-arrow-right-to-bracket"></i>
-                        </Link></li>
-                    }
+                        }>css</NavLink></li>} */}
+                        {user && <li><NavLink to="/profile" className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }>Profile</NavLink></li>}
+                        {/* {user &&<li><NavLink to="/js" className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }>js</NavLink></li> } */}
+                {user &&
+                    <
+// @ts-ignore
+                    Link onClick={() => {
+                        signOut(auth).then(() => {
+                            // Sign-out successful.
+                            go("/");
+
+                        // @ts-ignore
+                        }).catch((error) => {
+                            // An error happened.
+                        });
+                    }} className='logout-icn'>
+                        log out |
+                        <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                    </Link>
+                }
             </ul>
         </header>
     )

@@ -22,7 +22,6 @@ header .container .nav {}
 }
 .nav li a:hover,
 .nav li a.active {
-    background-color: #009688;
     background-color: darkslategrey;
 }
 .logout-icn {
