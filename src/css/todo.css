@@ -16,6 +16,7 @@ main.todo {
     gap: 25px;
     position: relative;
 }
+
 .todo h1 {
     font-size: 44px;
     text-transform: uppercase;
@@ -26,6 +27,7 @@ main.todo {
     padding: 10px 40px;
     margin-bottom: 34px;
 }
+
 .filter {
     display: flex;
     gap: 15px;
@@ -40,6 +42,7 @@ main.todo {
 .filter select option {
     
 }
+
 .tasks {
     display: flex;
     flex-wrap: wrap;
@@ -55,7 +58,9 @@ main.todo {
     width: 20vw;
     cursor: pointer;
     transition: all .4s;
+    font-size: 20px;
 }
+
 @media(max-width: 992px){
     .task {
         width: 30vw;
@@ -83,7 +88,7 @@ main.todo {
 }
 .task ul li {
     text-transform: capitalize;
-    font-size: 20px;
+
     margin-bottom: 5px;
 }
 .task .date {
@@ -97,13 +102,80 @@ main.todo {
 .todo .add-task i {
     margin-left: 15px;
 }
+.show-mess { 
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    font-size: 21px;
+    font-weight: bold;
+    color: #607D8B;
+    position: fixed;
+    top: 12vh;
+    transition: all 1s;
+}
+.show-mess.hide {
+        right: -50vw;
+}
+.show-mess.show {
+        right: 3vw;
+}
+.show-mess i {
+    margin-left: 15px;
+    color: #009688;
+}
+@media(max-width: 450px){
+    .todo {
+        font-size: 16px;
+    }
+    .todo h1 {
+        font-size: 22px;
+        letter-spacing: 5px;
+        padding: 5px 15px;
+        margin-bottom: 5px;
+    }
+    .filter {
+        flex-direction: column;
+        gap: 7px;
+        border: 1px solid;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .filter .btn {
+    }
+    .task {
+        font-size: 16px;
+    }   
+    .task h2 {
 
+    }
+    .task ul {
+        min-height: 10vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .show-mess.hide {
+        right: -100vw;
+}
+.show-mess.show {
+        right: unset;
+}
+}
 /* TASK INFO ( component ) */
 .task-info {
 }
 .task-info main {
     width: 60vw;
     margin: auto;
+}
+.task-info main {
+    width: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
 }
 .task-info .title {
     text-align: center;
@@ -116,6 +188,23 @@ main.todo {
     text-align: center;
     padding: 5px;
     margin-bottom: 35px;
+    color: cadetblue;
+    font-weight: bold;
+}
+.task-info .title h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.task-info .title h1 i {
+    font-size: 15px;
+}
+.task-info .title h1 input {
+    font-size: 22px;
+    width: 100%;
+    margin: unset;
+    text-align: left;
 }
 @media (max-width: 776px) {
     .task-info .title h1 input {
@@ -145,7 +234,6 @@ main.todo {
     margin-bottom: 5px;
     padding: 20px 25px;
     border-radius: 5px;
-    font-size: 20px;
     cursor: pointer;
     transition: all .5s;
     font-size: 24px;
@@ -179,6 +267,12 @@ ul.subs li .edit-inp {
 }
 .subtasks ul.subs li.edit-li {
     transition: all 1s;
+    animation: scaleAn .8s;
+}
+@keyframes scaleAn {
+    0% {scale: 0;}
+    50% {scale: 1.4;}
+    100% {scale: 1;}
 }
 .subtasks ul.subs li.edit-li input {
     background-color: #fff;
@@ -210,9 +304,93 @@ ul.subs li .edit-btns .btn.cancel {}
 .task-info .btns .btn i {
     margin-left: 10px;
 }
+@media(max-width: 420px){
+    .subtasks ul.subs li {
+        background-color: cadetblue;
+        margin-bottom: 5px;
+        padding: 10px 15px;
+        font-size: 16px;
+        width: 70vw;
+    }
+    .subtasks ul.subs li input {
+        padding: 3px;
+        border-radius: 5px;
+        text-transform: capitalize;
+        font-size: 14px;
+        background-color: transparent;
+        min-width: 30%;
+        max-width: fit-content;
+    }
+    ul.subs li .edit-btns .btn {
+        font-size: 12px;
+        margin-left: 5px;
+        padding: 5px 8px;
+    }
+}
+/* @media(max-width: 650px){
+    .task-info .title h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    .task-info .title h1 i {
+        font-size: 15px;
+    }
+    .task-info .title h1 input {
+        font-size: 22px;
+        width: 100%;
+        margin: unset;
+        text-align: left;
+    }
+}
+@media(max-width: 450px){
+    .task-info main {
+        width: unset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
+    .subtasks ul.subs li {
+        padding: 5px 10px;
+        font-size: 16px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .subtasks ul.subs li input {
+        font-size: 17px;
+        text-align: center;
+        margin-bottom: 6px;
+    }
+    .subtasks ul.subs li .icns {
+    }
+    .subtasks ul.subs li i{
+        font-size: 15px;
+    }
+    .subtasks ul.subs li input {
+        padding: 2px;
+        font-size: 16px;
+        background-color: transparent;
+        min-width: 30%;
+        max-width: fit-content;
+    }
+    ul.subs li .edit-btns .btn {
+        font-size: 12px;
+        padding: 5px 10px;
+        margin-left: 10px;
+    }
+    .subtasks .hd {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+} */
 
 /* Task Form */
-.add-task-form {
+/* .add-task-form {
     background-color: #aaa;
     position: absolute;
     left: 50%;
@@ -227,6 +405,23 @@ ul.subs li .edit-btns .btn.cancel {}
     border-radius: 10px;
     width: 40vw;
     transition: all 1s;
+} */
+.add-task-form {
+    background-color: darkcyan;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 52vw;
+    transition: all 1s;
+    align-items: start;
 }
 .add-task-form.hide {
     scale: 0;
@@ -246,51 +441,38 @@ ul.subs li .edit-btns .btn.cancel {}
     padding: 5px;
     border-radius: 5px;
     text-transform: capitalize;
+    width: 80%;
 }
 .add-task-form .btn {
     background-color: cadetblue !important;
     color: white !important;
 }
 .add-task-form .btn.add {
-    margin-left: 10px;
+    width: fit-content;
+    padding: 5px 10px;
+    margin-top: 10px;
 }
 .add-task-form .btn.sub {
+    width: 40%;
+    margin: auto;
+    background-color: rgba(34, 139, 34, 0.438) !important;
 }
 .add-task-form ul {
 }
 .add-task-form ul li {
     font-size: 18px;
-    background-color: rgb(115, 143, 144);
     padding: 5px 15px;
     margin-bottom: 3px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-transform: capitalize;
+    background-color: #eee;
+}
+.Dark .add-task-form ul li{
+    background-color: rgb(115, 143, 144);
 }
 .add-task-form ul li i {
     font-size: 15px;
     margin-left: 30px;
-}
-.show-mess { 
-    background-color: #fff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    text-transform: capitalize;
-    font-size: 21px;
-    font-weight: bold;
-    color: #607D8B;
-    position: fixed;
-    top: 12vh;
-    transition: all 1s;
-}
-.show-mess.hide {
-        right: -50vw;
-}
-.show-mess.show {
-        right: 3vw;
-}
-.show-mess i {
-    margin-left: 15px;
-    color: #009688;
 }
