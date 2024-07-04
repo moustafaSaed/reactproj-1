@@ -10,10 +10,12 @@
 .profile .container h1 {
     text-align: center;
     font-size: 36px;
-    color: darkslategrey;
+    color: #fff;
+    margin-bottom: 10px;
 }
 
 .profile .container .info {
+    background-color: var(--brwn);
     padding: 22px;
     border: 2px solid white;
     border-radius: 8px;
@@ -21,12 +23,13 @@
 
 .profile .container .info div {
     margin-bottom: 20px;
-    color: darkslateblue;
     font-weight: bold;
+    text-transform: capitalize;
+    color: #fff;
 }
 
 .profile .container .info div span {
-    color: cadetblue;
+    color: #aaa;
 }
 .profile .container .btn {
     display: block;
@@ -39,5 +42,6 @@
     }
     .profile .container .info div span {
         display: block;
+        font-size: 14px;
     }
 }

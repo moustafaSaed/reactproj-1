@@ -1,18 +1,27 @@
+/*
+        TABLE OF CONTENT  ::
+            -- SIGN IN PAGE
+            -- RESPONSIVE FOR FORM
+            -- FORGET FORM
+*/
+
+
 /* Sign In */
 .sign-in {
 }
-.main {
+.sign-in .overlay,
+.sign-up .overlay {
     flex-direction: column;
-    position: relative;
+    gap: 15px;
 }
+
 form.sign-in {
     width: 30vw;
     display: flex;
     flex-direction: column;
     padding: 30px 65px;
-    outline: 4px solid #aaa;
-    border-radius: 0px 15px;
-    box-shadow: 0 10px 10px 1px darkslategray;
+    outline: 2px solid #fff;
+    border-radius: 5px;
 }
 @media (max-width: 776px) {
     form {
@@ -22,37 +31,44 @@ form.sign-in {
 }
 form.sign-in h2 {
     font-size: 32px;
-    color: darkslategrey;
+    color: #fff;
     text-transform: capitalize;
     margin-bottom: 28px;
+    text-align: center;
 }
 form.sign-in input {
     margin-bottom: 12px;
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid darkslategrey;
     font-size: 17px;
 }
-form.sign-in input[type="email"] {}
-form.sign-in input[type="password"] {}
+
+form.sign-in input[type="email"] {
+    color: var(--brwn);
+    font-weight: bold;
+}
+form.sign-in input[type="password"] {
+    color: var(--brwn);
+    font-weight: bold;
+}
+
 form.sign-in input[type="button"] {
-    background-color: rgb(22, 86, 88);
+    background-color: var(--brwn);
     color: white;
     text-transform: capitalize;
     cursor: pointer;
-    box-shadow: 0px 33px 8px -20px rgb(17, 156, 156);
     transition: all .1s;
 }
 form.sign-in input[type="button"]:hover {
     opacity: .9;
-    /* margin-bottom: 14px; */
-    box-shadow: 0px 42px 10px -20px rgb(17, 156, 156);
-
+}
+form.sign-in .btn {
+    width: unset;
 }
 .forget-link {
     width: fit-content;
     margin: 22px auto 0 auto;
-    color: #FF5722;
+    color: #fff;
     text-transform: capitalize;
     font-weight: 800;
     cursor: pointer;
@@ -60,21 +76,36 @@ form.sign-in input[type="button"]:hover {
 }
 .forget-link:hover {
     color: #4caf50;
-    font-size: 18px;
+    font-size: 16.2px;
 }
-
+@media (max-width: 776px) {
+    form.sign-in {
+        width: 70% !important;
+        padding: 15px !important;
+    }
+    form.sign-in h2 {
+        font-size: 20px !important;
+    }
+    form.sign-in input {
+        font-size: 15px !important;
+        padding: 5px 8px !important;
+    }
+    .out-lnk {
+        font-size: 16px !important;
+    }
+}
 .out-lnk {
     margin-top: 35px;
     font-size: 22px;
     text-transform: capitalize;
 }
 .out-lnk p {
-    color: darkslategray;
+    color: #fff;
     font-weight: bold;
     margin-bottom: 5px;
 }
 .out-lnk a {
-    color: darkslateblue;
+    color: #fff;
     font-weight: bolder;
     border-bottom: 1px solid;
     padding-bottom: 5px;
@@ -88,22 +119,23 @@ form.sign-in input[type="button"]:hover {
     margin-left: 5px;
 }
 
+.err {
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 32px;
+    background-color: var(--brwn);
+    width: 65vw;
+    border: 3px solid;
+    color: #fff;
+}
 .try-again {
     display: block;
-    background-color: darkseagreen;
-    padding: 5px 15px;
-    width: fit-content;
-    margin: 12px 12px 12px auto;
-    border-radius: 5px;
-    border: 2px solid;
-    color: white;
-    cursor: pointer;
-    transition: all .3s;
+    margin: 15px 0px 0px auto;
+    font-size: 20px;
+    background-color: var(--brwn-light);
 }
 .try-again:hover {
-    background-color: rgb(86, 157, 86);
-    margin: 12px 35px 12px auto;
-    transform: rotate(2deg);
+    scale: 1.02;
 }
 .loading {
     font-size: 36px;
@@ -115,13 +147,13 @@ form.forgot {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    padding: 25px;
-    background-color: #aaa;
-    color: darkslategrey;
+    padding: 10px;
+    background-color: var(--brwn);
+    color: #fff;
     font-size: 22px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
     border-radius: 10px;
     border: 3px solid white;
     transition: all 1s;
@@ -135,30 +167,37 @@ form.forgot.show {
 form.forgot input {
     background-color: #fff;
     padding: 5px 8px;
-    margin: 20px auto;
-    border-radius: 5px;
-    font-size: 22px;
-    color: darkslategrey;
+    margin: 10px auto;
+    border-radius: 3px;
+    width: 70%;
+    font-size: 16px;
+    color: var(--brwn);
+    font-weight: bold;
 }
 form.forgot button {
-    background-color: cadetblue;
+    background-color: var(--brwn-light);
     color: white;
-    padding: 5px 30px;
+    width: 30%;
     font-size: 16px;
-    border: 2px solid white;
-    margin-bottom: 15px;
 }
 form.forgot .mess {
-    background-color: darkseagreen;
-    color: #fff;
+    background-color: #fff;
+    color: var(--brwn);
+    font-weight: 600;
     padding: 6px 22px;
     border-radius: 10px;
     border: 1px solid;
     transition: all 1s;
+    /* display: none; */
     transform: scale(0);
+    width: 0;
+    height: 0;
 }
 form.forgot .mess.show{
+    /* display: block; */
     transform: scale(1);
+    width: unset;
+    height: unset;
 }
 form.forgot .close-icn {
     
@@ -167,10 +206,9 @@ form.forgot .close-icn i {
     margin: 5px 5px 5px auto;
     cursor: pointer;
     color: white;
-    transition: all .8s;
+    transition: all .3s;
 }
 form.forgot .close-icn i:hover {
-    transform: rotate(180deg);
-    color: red;
-    font-size: 26px;
+    color: rgb(255, 145, 145);
+    scale: 1.1;
 }

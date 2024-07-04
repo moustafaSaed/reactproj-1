@@ -6,9 +6,11 @@ import "./login.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/config';
+import { useTranslation } from 'react-i18next';
 
 const SignIn = () => {
     // HOOKS
+    const { t, i18n } = useTranslation(); // new
     const navigate = useNavigate();
     const [email, setMail] = useState('');
     const [resetMail, setResetMail] = useState('');
@@ -21,9 +23,9 @@ const SignIn = () => {
     useEffect(() => { // to reset when refresh ..
         setClass('');
         setClassForm('hide');
-    },[])
+    }, [])
     // FUNCTIONS
-    const passResetFunc = (e)=>{
+    const passResetFunc = (e) => {
         e.preventDefault();
         setClass('show');
 
@@ -48,7 +50,7 @@ const SignIn = () => {
                 // ..
             });
     }
-    const signInFunc = (e)=>{
+    const signInFunc = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -81,45 +83,57 @@ const SignIn = () => {
     return (
         <div className='sign-in'>
             <Helmet>
-                <title>Muslim | Sign In</title>
+                {i18n.language === 'en' && <title>Muslim | Sign In</title>}
+                {i18n.language === 'ar' && <title>مُـسـلِـم  |  تسجيل الدخول</title>}
             </Helmet>
             <Header />
-            <div className='flx-center main' style={{ height: "84vh" }}>
-                {/* FORGOT PASSWORD FORM */}
-                <form action="" className={`forgot ${ClassForm}`}>
-                    <div className="close-icn">
-                        <i className="fa-regular fa-rectangle-xmark" onClick={() => setClassForm('hide')}></i>
-                    </div>
-                    <input onChange={(e) => { setResetMail(e.target.value) }} required type="email" placeholder='Ex: a@b.com' />
-                    <button className='btn' onClick={(e) => passResetFunc(e)}>reset</button>
-                    {resetErr&&<div style={{backgroundColor:'indianred'}} className={`mess ${classM}`}>Mous Error : {errCode}</div>}
-                    {!resetErr&&<div className={`mess ${classM}`}>Please Check you email to reset your password</div>}
+            <main>
+                <div className='overlay flx-center'>
+                    {/* FORGOT PASSWORD FORM */}
+                    <form action="" className={`flx-center forgot ${ClassForm}`}>
+                        <div className="close-icn">
+                            <i className="fa-regular fa-rectangle-xmark" onClick={() => setClassForm('hide')}></i>
+                        </div>
+                        {i18n.language === 'en' &&<p>write your email to send you mess to easily reset your password ..</p>}
+                        {i18n.language === 'ar' &&<p>برجاء إدخال ايميلك لنرسل لك رسالة تحقيق لسهولة إستعادة كلمة السر</p>}
+                        <input onChange={(e) => { setResetMail(e.target.value) }} required type="email" placeholder='Ex: a@b.com' />
+                        <button className='btn' onClick={(e) => passResetFunc(e)}>{t('reset')}</button>
+                        {resetErr && <div style={{ backgroundColor: 'indianred' }} className={`mess ${classM}`}>Mous Error : {errCode}</div>}
+                        {!resetErr && <div className={`mess ${classM}`}>
+                            {i18n.language == 'en' && <p>Please Check you email inbox to reset your password</p>}
+                            {i18n.language == 'ar' && <p>أرجوك تفقّد رسائل الإيميل الخاص بك لإستعادة كلمة المرور</p>}
+                        </div>}
 
-                    
-                </form>
-                {/* MAIN SIGN IN FORM */}
-                {!errorState && <form className='sign-in' action="">
-                    <h2>sign in <span className="logo-txt">muslim</span></h2>
-                    <input onChange={(e) => { setMail(e.target.value) }} required type="email" placeholder='Ex: a@b.com' />
-                    <input onChange={(e) => { setPass(e.target.value) }} required type="password" placeholder='Password' />
-                    <input onClick={(e) => signInFunc(e)} className='' type="button" value="sign in" />
-                    <div className="forget-link" onClick={() => setClassForm('show')}>forget my pass</div>
-                </form>}
-                {!errorState && <div className='out-lnk'>
-                    <p>don't have an account ? </p>
-                    <Link to='/signup'>
-                        sign up
-                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                    </Link>
-                </div>}
-                {errorState && // WHEN AN ERROR OCCUR
-                    <div className="err">
-                        {errCode}
-                        <div className='try-again' onClick={() => setErrState(false)}>try again ..</div>
-                    </div>
-                }
 
-            </div>
+                    </form>
+                    {/* MAIN SIGN IN FORM */}
+                    {!errorState && <form className='sign-in' action="">
+                        <h2>{t('signin')}</h2>
+                        <input onChange={(e) => { setMail(e.target.value) }} required type="email" placeholder={t('emailEx')} />
+                        <input onChange={(e) => { setPass(e.target.value) }} required type="password" placeholder={t('password')} />
+                        <input onClick={(e) => signInFunc(e)} className='btn' type="button" value={t('signin')} />
+                        <div className="forget-link" onClick={() => setClassForm('show')}>
+                            {i18n.language === 'en' && <p>forget password</p>}
+                            {i18n.language === 'ar' && <p>نسيت كلمة السر</p>}
+                        </div>
+                    </form>}
+                    {!errorState && <div className='out-lnk'>
+                        {i18n.language === 'ar' && <p>هل بالفعل تمتلك حساباً ؟ </p>}
+                        {i18n.language === 'en' && <p>already have an account ? </p>}
+                        <Link to='/signup'>
+                            {t('signup')}
+                            <i style={{ margin: 'auto 15px' }} className="fa-solid fa-arrow-up-right-from-square"></i>
+                        </Link>
+                    </div>}
+                    {errorState && // WHEN AN ERROR OCCUR
+                        <div className="err">
+                            {errCode}
+                            <div className='btn try-again' onClick={() => setErrState(false)}>{i18n.language == 'en' ? 'try again ..' : 'حاول مرّة أخرى ..'}</div>
+                        </div>
+                    }
+
+                </div>
+            </main>
             <Footer />
         </div>
     )

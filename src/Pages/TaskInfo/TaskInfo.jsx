@@ -4,27 +4,43 @@ import Footer from './../../Components/General/Footer/Footer';
 import Header from './../../Components/General/Header/Header';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './../../firebase/config';
-import  ReactLoading  from 'react-loading';
+import ReactLoading from 'react-loading';
 import TaskInfoComp from './TaskInfoComp';
 
 const TaskInfo = () => {
     const [user, loading, error] = useAuthState(auth);
-    
+
     if (error) {
         return (
-            <h1>Error Mous ::</h1>
+            <div className='task-info'>
+                <Header />
+                <main>
+                    <div className="overlay">
+                        <h1>Error Mous :: {error.message}</h1>
+                    </div>
+                </main>
+                <Footer />
+            </div>
         )
     }
     if (loading) {
         return (
-            <ReactLoading type={'spin'} color={'#009688'} height={100} width={100} />
+            <div className='task-info'>
+                <Header />
+                <main>
+                    <div className="overlay">
+                        <ReactLoading type={'balls'} color={'var(--brwn)'} height={100} width={100} />
+                    </div>
+                </main>
+                <Footer />
+            </div>
         )
     }
     if (user) {
         return (
             <div className='task-info'>
                 <Header />
-                <TaskInfoComp user={user}/>
+                <TaskInfoComp user={user} />
                 <Footer />
             </div>
         )

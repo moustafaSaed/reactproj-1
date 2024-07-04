@@ -1,9 +1,11 @@
 header {
     background-color: #009688;
+    background-color: var(--brwn);
     color: white;
     font-size: 24px;
     text-transform: capitalize;
     position: relative;
+    box-shadow: 0px 2px 2px 0px; /*new*/
 }
 header .container {
     height: 8vh;
@@ -23,19 +25,71 @@ header .container .nav {}
 .nav li a:hover,
 .nav li a.active {
     background-color: darkslategrey;
+    background-color: var(--brwn-light);
 }
-.logout-icn {
+li.lang {
+    position: relative;
+    cursor: pointer;
+}
+li.lang p {}
+li.lang ul.lang-opt {
+    position: absolute;
+    top: 5vh;
+    left: -19px;
+    background-color: #009688;
+    background-color: var(--brwn-light);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid;
+    z-index: 999;
+    /* display: none; */
+    scale: 0;
+    transition: all .6s;
+}
+li.lang:hover ul.lang-opt {
+    scale: 1;
+}
+li.lang ul.lang-opt li {   
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all .6s;
+    cursor: pointer;
+}
+li.lang ul.lang-opt li:not(:last-of-type) {
+    margin-bottom: 15px;
+}
+li.lang ul.lang-opt li:hover,
+li.lang ul.lang-opt li.active {
+    background-color: white;
+    color: #009688;
+    color: var(--brwn);
+}
+/* .logout-icn {
     margin-left: 30px;
     font-size: 24px;
     text-shadow: 1px 2px 2px #000;
     cursor: pointer;
     transition: all .3s;
+} */
+.logout-icn {
+    font-size: 24px;
+    cursor: pointer;
+    transition: all .3s;
+    background-color: white;
+    color: var(--brwn);
+    font-size: 19px;
+    padding: 3px;
+    border-radius: 3px;
+    width: fit-content;
+    display: block;
+    margin: 1px 75px 1px auto;
 }
 .logout-icn:hover {
-    margin-bottom: 5px;
+    scale: 1.03;
 }
 .logout-icn i {
-    margin-left: 5px;
+    margin: auto 10px;
+    font-size: 16px;
 }
 header .icon {
     display: none;
@@ -51,12 +105,25 @@ header .icon:hover i {
     padding: 10px;
     border-top: 1px solid;
     position: absolute;
-    background-color: #009688;
+    background-color: var(--brwn);
     color: white;
     font-size: 24px;
     text-transform: capitalize;
     width: 100%;
     z-index: 5;
+}
+.nav-when-small li.lang {
+    position: relative;
+}
+.nav-when-small li.lang ul.lang-opt {
+    scale: 1;
+    display: none;
+    left: 9vw;
+    position: static;
+    margin-top: 10px;
+}
+li.lang:hover ul.lang-opt {
+    display: block;
 }
 .nav-when-small.show {
     display: show;
@@ -84,60 +151,8 @@ header .icon:hover i {
 }
 .nav-when-small li a:hover,
 .nav-when-small li a.active {
-    background-color: darkslategrey;
+    background-color: var(--brwn-light);
 }
-.err {
-    padding: 20px;
-    border-radius: 10px;
-    font-size: 32px;
-    background-color: indianred;
-    width: 65vw;
-    border: 3px solid;
-}
-.preLogin {
-    font-size: 26px;
-    flex-direction: column;
-}
-.preLogin a {}
-.preLogin a .btnX {
-    padding: 20px 80px;
-    margin-bottom: 25px;
-    border: 3px solid white;
-    border-radius: 20px 0;
-    transition: all .3s;
-    text-transform: capitalize;
-
-}
-.preLogin a .btnX:hover {
-    opacity: .9;
-    transform: scale(1.2) rotate(1deg);
-}
-.preLogin a .btnX.in {
-    background-color: darkslategray;
-    color: #fff;
-}
-.preLogin a .btnX.up {
-    background-color: darkslateblue;
-    color: #fff;
-}
-.logo-txt {
-    display: inline-block;
-    text-transform: capitalize;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: darkslateblue;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all .4s;
-}
-.logo-txt:hover {
-    transform: scaleX(1.4);
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-
-
 
 
 @media (max-width: 776px) {

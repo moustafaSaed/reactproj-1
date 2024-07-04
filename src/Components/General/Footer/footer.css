@@ -1,7 +1,9 @@
 footer {
     font-size: 24px;
     background-color: #009688;
+    background-color: var(--brwn);
     color: white;
+    box-shadow: 0px -2px 2px 0px; /*new*/
 }
 @media (max-width: 406px) {
     footer {
@@ -12,11 +14,15 @@ footer .container {
     height: 8vh;
 }
 footer .container i {
-    color: indianred;
-    margin: auto 20px;
+    color: var(--brwn-light);
 }
 footer .container span {
     text-transform: capitalize;
-    color: indianred;
-    margin: auto 20px;
+}
+footer .container span .my-name {
+    border-bottom: 2px solid;
+    margin: auto 10px;
+}
+.my-name.ar {
+    font-family: "Noto Nastaliq Urdu", serif;
 }

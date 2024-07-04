@@ -1,1 +1,11 @@
-start from 14.1
+responsive
+dictionary for all pages
+add task form   -- style
+                -- handle arabic tasks
+                -- make modal for it
+refresh dark mode for all
+handle (loading, error, value) in all pages
+handle (loading, error, user) in all pages
+handle security in all pages 
+                    -- can't access expect user 
+                    -- error page

@@ -1,12 +1,15 @@
 import { db } from '../../firebase/config';
 import { arrayRemove, arrayUnion, deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import TimeDuration from '../../Components/TimeDuration';
+import { useTranslation } from 'react-i18next';
 
 const TaskInfoComp = ({ user }) => {
+    const { t, i18n } = useTranslation(); // new
+    const inputElement = useRef(null);
     const [showContent, setShowContent] = useState(true);
     const go = useNavigate();
     const { id } = useParams(); // const name should be the same in app.jsx routes \:id
@@ -16,6 +19,15 @@ const TaskInfoComp = ({ user }) => {
     // const [subArr, setSubArr] = useState(value.data().subTasks);
     const [newSub, setNewSub] = useState('');
     const [isEnable, setIsEnable] = useState(false);
+    const [isComp, setIsComp] = useState("");
+    const addBtn = useRef(null)
+
+    const handleEnterKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            // Trigger button click here
+            addBtn.current.click();
+        }
+    };
 
     const addSubFunc = () => {
         setSubArr([...subArr, newSub]);
@@ -23,28 +35,34 @@ const TaskInfoComp = ({ user }) => {
     }
     console.log(document.getElementById('completed'))
     if (loading) {
-        <ReactLoading type={'spin'} color={"white"} height={100} width={100} />
+        <ReactLoading type={'bars'} color={'var(--brwn)'} height={100} width={100} />
     }
     if (value) {
-        if(showContent){
+        if (showContent) {
             return (
-                <main className='container'>
+                <main className=''>
+                    <div className="overlay">
+
                     {/* TITLE */}
                     <section className="title">
                         <h1>
-                            <input onChange={async (e) => {
+                            <input ref={inputElement} onChange={async (e) => {
                                 await updateDoc(doc(db, user.uid, id), {
                                     taskTitle: e.target.value,
                                 });
-                            }} className='title-input' type="text" defaultValue={value.data().taskTitle} />
+                            }} className={`title-input ${isComp}`} type="text" defaultValue={value.data().taskTitle} />
                             {/* <input className='title-input' type="text" value={value.data().taskTitle}/> */}
-                            <i className="fa-regular fa-pen-to-square"></i>
+                            <i className="fa-regular fa-pen-to-square" onClick={() => inputElement.current.focus()}></i>
                         </h1>
                     </section>
                     {/* TASKS */}
                     <section className="subtasks">
                         <div className="hd flx-between"> {/* top */}
-                            <div className='flx-between'><p>created : </p> <TimeDuration date={value.data().id} /></div>
+                            <div className='flx-between'>
+                                {i18n.language === "ar" && <p>تم الإنشـاء : </p> }
+                                {i18n.language === "en" && <p>created : </p> }
+                                <TimeDuration date={value.data().id} />
+                                </div>
                             <div className='flx-between'>
                                 {/* {value.data().completed && (<input checked type="checkbox" name="" id="completed" />)}
                                         {!value.data().completed && (<input type="checkbox" name="" id="completed" />)} */}
@@ -52,20 +70,24 @@ const TaskInfoComp = ({ user }) => {
                                     await updateDoc(doc(db, user.uid, id), {
                                         completed: e.target.checked,
                                     });
+                                    setIsComp(value.data().completed ? '' : 'completed');
                                 }} type="checkbox" name="" id="completed" />
-                                <label htmlFor='completed'>completed</label>
+                                {i18n.language === "ar" && <label htmlFor='completed'>انتهـت</label>}
+                                {i18n.language === "en" && <label htmlFor='completed'>completed</label>}
+                                
                             </div>
                         </div>
                         <ul className="subs">
-                            {
+                            {   
                                 value.data().subTasks.map((item) => (
                                     (<li key={item} className='flx-between'>
-                                        {!isEnable && <input readOnly type="text" defaultValue={item} />}
-                                        {isEnable && <input type="text" onChange={() => { }} value={item} />}
-    
+                                        {item}
+                                        {/* {!isEnable && <input readOnly type="text" defaultValue={item} />}
+                                        {isEnable && <input type="text" onChange={() => { }} value={item} />} */}
+
                                         {/* <p>{item}</p> */}
                                         <div className="icns">
-                                            <i onClick={() => setIsEnable(!isEnable)} className="edit fa-regular fa-pen-to-square"></i>
+                                            {/* <i onClick={() => setIsEnable(!isEnable)} className="edit fa-regular fa-pen-to-square"></i> */}
                                             <i onClick={async () => await updateDoc(doc(db, user.uid, id), {
                                                 subTasks: arrayRemove(item),
                                             })} className="delete fa-regular fa-square-minus"></i>
@@ -73,46 +95,50 @@ const TaskInfoComp = ({ user }) => {
                                     </li>)
                                 ))
                             }
+                            
                             <li className={`flx-between edit-li ${showHide}`}>
-                                <input className='edit-inp' type="text" onChange={(e) => setNewSub(e.target.value)} value={newSub} />
+                                <input className='edit-inp' type="text" onChange={(e) => setNewSub(e.target.value)} value={newSub} onKeyUp={handleEnterKeyPress}/>
                                 <div className="edit-btns flx-between">
-                                    <div onClick={async() => {
+                                    <div onClick={async () => {
                                         await updateDoc(doc(db, user.uid, id), {
                                             subTasks: arrayUnion(newSub),
                                         });
                                         setShowHide('hide');
-                                    }} className="btn add">add</div>
-                                    <div onClick={() => setShowHide('hide')} className="btn cancel">cancel</div>
+                                    }} className="btn add" ref={addBtn}>{t('add')}</div>
+                                    <div onClick={() => setShowHide('hide')} className="btn cancel">{t('cancel')}</div>
                                 </div>
                             </li>
                         </ul>
                     </section>
                     {/* BUTTONS */}
                     <section className="btns">
-                        <div onClick={() => setShowHide('show')} className="btn flx-between">
-                            <p>add more</p>
-                            <i className="fa-solid fa-plus"></i>
+                        <div onClick={() => setShowHide('show')} className="btn flx-center">
+                            {i18n.language === "ar" && <p>أضِف المزيد</p>}
+                            {i18n.language === "en" && <p>add more</p>}
                         </div>
-                        
-                        <div onClick={async ()=>{
+
+                        <div onClick={async () => {
                             setShowContent(false);
                             await deleteDoc(doc(db, user.uid, id));
-                            go("/todo", {replace: true});
+                            go("/todo", { replace: true });
                         }} className="btn danger-btn">
-                            <p>delete</p>
+                            {i18n.language === "ar" && <p>مسـح</p>}
+                            {i18n.language === "en" && <p>delete</p>}
+                            
                         </div>
                     </section>
+                    </div>
                 </main >
             )
-        } 
-        if(!showContent) {
+        }
+        if (!showContent) {
             return (
-                <div className="flx-center" style={{height:'100vh'}}>
-                    <ReactLoading type={'bars'} color={'orangered'} height={50} width={50}/>
+                <div className="flx-center" style={{ height: '100vh' }}>
+                    <ReactLoading type={'cubes'} color={'var(--brwn)'} height={50} width={50} />
                 </div>
             )
         }
-        
+
     }
     // console.log(value.data().subTasks)
 

@@ -9,18 +9,19 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerifi
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/config';
 import './login.css';
+import { useTranslation } from 'react-i18next';
+import  ReactLoading  from 'react-loading';
 
 
 
 const SignUp = () => {
+    const { t, i18n } = useTranslation(); // new
     const [errCode, setErrCode] = useState("");
-    const [errorMess, setErr] = useState("");
     const [errorState, setErrState] = useState(false);
     const navigate = useNavigate();
     const [email, setMail] = useState("");
     const [password, setPass] = useState("");
     const [name, setName] = useState("");
-    const [phone, setPhone] = useState(``);
     const [user, loading, error] = useAuthState(auth);
 
     const signUpFunc = (e) => {
@@ -83,11 +84,12 @@ const SignUp = () => {
         return (
             <div>
                 <Helmet>
-                    <title>Muslim | Sign Up</title>
+                    {i18n.language === 'en' && <title>Muslim | Sign Up</title>}
+                    {i18n.language === 'ar' && <title>مُـسـلِـم  |  إنشاء حساب</title>}
                 </Helmet>
                 <Header />
                 <div className='flx-center main' style={{ height: "84vh" }}>
-                    <div className="loading">Mous :: Loading ..</div>
+                    <ReactLoading type={'bubbles'} color={'var(--brwn)'} height={55} width={55} />
                 </div>
                 <Footer />
             </div>
@@ -96,33 +98,37 @@ const SignUp = () => {
     // 2- WHEN FINISH LOADING BUT NOT A USER
     if (!user) {
         return (
-            <div>
+            <div className='sign-up'>
                 <Helmet>
-                    <title>Muslim | Sign Up</title>
+                    {i18n.language === 'en' && <title>Muslim | Sign Up</title>}
+                    {i18n.language === 'ar' && <title>مُـسـلِـم  |  إنشاء حساب</title>}
                 </Helmet>
                 <Header />
-                <div className='flx-center main' style={{ height: "84vh" }}>
-                    {!errorState && <form className='sign-in' action="">
-                        <h2>Regist at <span className="logo-txt">muslim</span></h2>
-                        <input onChange={(e) => { setName(e.target.value) }} required type="text" placeholder='Name  :' />
-                        <input onChange={(e) => { setMail(e.target.value) }} required type="email" placeholder='Email  :' />
-                        <input onChange={(e) => { setPass(e.target.value) }} required type="password" placeholder='password  :' />
-                        <input className='' type="button" value="regist" onClick={(e) => signUpFunc(e)} />
-                    </form>}
-                    {!errorState && <div className='out-lnk'>
-                        <p>already have an account ? </p>
-                        <Link to='/signin'>
-                            sign in
-                            <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                        </Link>
-                    </div>}
-                    {errorState &&
-                        <div className="err">
-                            {errCode}
-                            <div className='try-again' onClick={() => setErrState(false)}>try again ..</div>
-                        </div>
-                    }
-                </div>
+                <main>
+                    <div className='overlay flx-center'>
+                        {!errorState && <form className='sign-in' action="">
+                            <h2>{t('regist')}</h2>
+                            <input onChange={(e) => { setName(e.target.value) }} required type="text" placeholder={t('name')} />
+                            <input onChange={(e) => { setMail(e.target.value) }} required type="email" placeholder={t('emailEx')} />
+                            <input onChange={(e) => { setPass(e.target.value) }} required type="password" placeholder={t('password')} />
+                            <input className='btn' type="button" value={t('regist')} onClick={(e) => signUpFunc(e)} />
+                        </form>}
+                        {!errorState && <div className='out-lnk'>
+                            {i18n.language === 'ar' && <p>هل بالفعل تمتلك حساباً ؟ </p>}
+                            {i18n.language === 'en' && <p>already have an account ? </p>}
+                            <Link to='/signin'>
+                                {t('signin')}
+                                <i style={{margin:'auto 15px'}} className="fa-solid fa-arrow-up-right-from-square"></i>
+                            </Link>
+                        </div>}
+                        {errorState &&
+                            <div className="err">
+                                {errCode}
+                                <div className='btn try-again' onClick={() => setErrState(false)}>{i18n.language=='en'?'try again ..':'حاول مرّة أخرى ..'}</div>
+                            </div>
+                        }
+                    </div>
+                </main>
                 <Footer />
             </div>
         )

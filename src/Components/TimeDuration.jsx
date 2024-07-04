@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 
 function TimeDuration({date}) {
+    const { t, i18n } = useTranslation(); // new
     const [duration, setDuration] = useState(null);
 
     useEffect(() => {
@@ -42,11 +44,11 @@ function TimeDuration({date}) {
     return (
         <div>
             {
-                duration.years > 0 ? (<p>{duration.years} years ago</p>) : 
-                    duration.months > 0 ? (<p>{duration.months} months ago</p>) : 
-                        duration.days > 0 ? (<p>{duration.days} days ago</p>) : 
-                            duration.hours > 0 ? (<p>{duration.hours} hours ago</p>) : 
-                                duration.minutes > 0 ? (<p>{duration.minutes} minutes ago</p>) : (<p>{duration.seconds} seconds ago</p>)
+                duration.years > 0 ? (<p> {i18n.language==='ar' && <span>منذ</span>} {duration.years}  {t('years')}</p>) : 
+                    duration.months > 0 ? (<p> {i18n.language==='ar' && <span>منذ</span>} {duration.months} {t('months')}</p>) : 
+                        duration.days > 0 ? (<p> {i18n.language==='ar' && <span>منذ</span>} {duration.days} {t('days')}</p>) : 
+                            duration.hours > 0 ? (<p> {i18n.language==='ar' && <span>منذ</span>} {duration.hours} {t('hours')}</p>) : 
+                                duration.minutes > 0 ? (<p> {i18n.language==='ar' && <span>منذ</span>} {duration.minutes} {t('minutes')}</p>) : (<p> منذ {duration.seconds} {t('seconds')}</p>)
             }
             
         </div>

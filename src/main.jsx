@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import { HelmetProvider } from 'react-helmet-async'
 import '../src/darkmode.css';
 import { DataProvider } from './Context/Context';
+import './i18n.js';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

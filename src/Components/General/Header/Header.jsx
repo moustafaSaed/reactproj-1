@@ -6,110 +6,103 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '../../../firebase/config';
 import { signOut } from "firebase/auth";
+import { useTranslation } from 'react-i18next';
 
 
 const Header = () => {
+    // VARIABLES
+    const { t, i18n } = useTranslation(); // new
     const go = useNavigate();
-    // @ts-ignore
     const [user, loading, error] = useAuthState(auth);
     const [x, setX] = useState('hide');
     const toggleMenu = () => {
         x == 'hide' ? setX('show') : setX('hide');
     }
     // @ts-ignore
-    const { mode, sun, changeMode, toggleSun } = useContext(DataContext);
-
+    const { mode, sun, changeMode, toggleSun } = useContext(DataContext); 
+    // FUNCTIONS
+    const signOutFunc = () => {
+        {
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                go("/");
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+    }
+    const drkIcnHandler = () => {
+        changeMode(mode === "Light" ? "Dark" : "Light");
+                    toggleSun(sun === 'fa-solid' ? "fa-regular" : 'fa-solid');
+    }
 
     return (
         <header>
-            {/* {user && <h2>Done</h2>} */}
             <div className="container flx-between">
-                <Link to="/">
-                    <div className="logo">Muslim</div>
-                </Link>
-                <div className="darkmode-icon" onClick={() => {
-                    changeMode(mode === "Light" ? "Dark" : "Light");
-                    toggleSun(sun === 'fa-solid' ? "fa-regular" : 'fa-solid');
-                }}>
+                {/* ----------- LOGO ----------- */}
+                <Link to="/"><div className="logo">{t('muslim')}</div></Link>
+                <div className="darkmode-icon" onClick={() => drkIcnHandler()}>
                     <i className={`${sun} fa-sun`}></i>
                 </div>
                 <div className='flx-between'>
                     <ul className="nav flx-between gap-10">
-                        {!user && <li><NavLink to="/signin">sign in</NavLink></li>}
-                        {!user && <li><NavLink to="/signup">sign up</NavLink></li>}
-                        {user && <li><NavLink to="/html" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>html</NavLink></li>}
+                        {/* if not a user yet  */}
+                        {!user && <li><NavLink to="/signin">{t('signin')}</NavLink></li>}
+                        {!user && <li><NavLink to="/signup">{t('signup')}</NavLink></li>}
+                        
+                        <li className='lang'>
+                            <p>{t('langs')}</p>
+                            <ul className='lang-opt'>
+                                <li onClick={() => {i18n.changeLanguage("en");}} >{t('english')}</li>
+                                <li onClick={() => {i18n.changeLanguage("ar");}} >{t('arabic')}</li>
+                            </ul>
+                        </li>
+                        {/* if user */}
+                        {/* NAVBAR LINKS IN BIG SCREENS  */}
                         {user && <li><NavLink to="/todo" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>todo</NavLink></li>}
-                        {/* {user && <li><NavLink to="/css" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>css</NavLink></li>} */}
+                        }>{t('todo')}</NavLink></li>}
                         {user && <li><NavLink to="/profile" className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
-                        }>Profile</NavLink></li>}
-                        {/* {user &&<li><NavLink to="/js" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>js</NavLink></li> } */}
-                        {user &&
-                            <
-// @ts-ignore
-                            Link onClick={() => {
-                                signOut(auth).then(() => {
-                                    // Sign-out successful.
-                                    go("/");
-
-                                // @ts-ignore
-                                }).catch((error) => {
-                                    // An error happened.
-                                });
-                            }} className='logout-icn'>
-                                log out |
+                        }>{t('profile')}</NavLink></li>}
+                        {user &&<Link onClick={() => signOutFunc()} className='logout-icn' to={''}>
+                                {t('logout')}
                                 <i className="fa-solid fa-arrow-right-to-bracket"></i>
-                            </Link>
-                        }
+                            </Link>}
                     </ul>
                 </div>
                 <div className="icon" onClick={() => toggleMenu()}>
                     <i className="fa-regular fa-square-caret-left"></i>
                 </div>
             </div>
+            {/* NAVBAR LINKS IN SMALL SCREENS  */}
             <ul className={`nav-when-small ${x}`}>
-            {!user && <li><NavLink to="/signin">sign in</NavLink></li>}
-                        {!user && <li><NavLink to="/signup">sign up</NavLink></li>}
-                        {user && <li><NavLink to="/html" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>html</NavLink></li>}
-                        {user && <li><NavLink to="/todo" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>todo</NavLink></li>}
-                        {/* {user && <li><NavLink to="/css" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>css</NavLink></li>} */}
-                        {user && <li><NavLink to="/profile" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>Profile</NavLink></li>}
-                        {/* {user &&<li><NavLink to="/js" className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "active" : ""
-                        }>js</NavLink></li> } */}
-                {user &&
-                    <
-// @ts-ignore
-                    Link onClick={() => {
-                        signOut(auth).then(() => {
-                            // Sign-out successful.
-                            go("/");
+                {/* IF NOT A USER */}
+                {!user && <li><NavLink to="/signin">{t('signin')}</NavLink></li>}
+                {!user && <li><NavLink to="/signup">{t('signup')}</NavLink></li>}
 
-                        // @ts-ignore
-                        }).catch((error) => {
-                            // An error happened.
-                        });
-                    }} className='logout-icn'>
-                        log out |
+                {/* IF BECOME A USER  */}
+                {user && <li><NavLink to="/todo" className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                }>{t('todo')}</NavLink></li>}
+                {user && <li><NavLink to="/profile" className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                }>{t('profile')}</NavLink></li>}
+                {true && <li className='lang'><NavLink to={""}>
+                    <p>{t('langs')}</p>
+                    <ul className='lang-opt'>
+                        <li onClick={() => {
+                            i18n.changeLanguage("en");
+                        }} >{t('english')}</li>
+                        <li onClick={() => {
+                            i18n.changeLanguage("ar");
+                        }} >{t('arabic')}</li>
+                    </ul>
+                </NavLink></li>}
+                {user && <Link onClick={() => signOutFunc()} className='logout-icn' to={''}>
+                        {t('logout')}
                         <i className="fa-solid fa-arrow-right-to-bracket"></i>
-                    </Link>
-                }
+                    </Link>}
             </ul>
         </header>
     )

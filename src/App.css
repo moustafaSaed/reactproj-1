@@ -8,15 +8,22 @@
 
 
 /*  GENERAL  */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&display=swap');
+
 :root {
-    --clr-main: darkslateblue;
+    --brwn: #795548;
+    --brwn-light: #927267;
+    --brwn-transparent: rgb(121 85 72 / 53%);
+    --brwn-secondary: #f08080;
+    /* --dark: #333;
+    --dark-light: #607D8B;
+    --dark-transparent: #333333b8; */
 }
 
+
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: sans-serif;
     background-color: rgb(223, 224, 224);
-    color: #795548;
-    color: #009688;
 }
 
 * {
@@ -85,21 +92,23 @@ main {
 .btn {
     padding: 5px 10px;
     border: 2px solid;
+    border-bottom: 4px solid;
     width: fit-content;
     border-radius: 5px;
     text-transform: capitalize;
     cursor: pointer;
     transition: all .3s;
 }
+
 @media (max-width: 442px) {
     .btn {
         font-size: 12px;
         border: 1px solid;
+        border-bottom: 3px solid;
     }
 }
 .btn:hover {
-    opacity: .8;
-    transform: translateY(-2px);
+    scale: 1.02;
 }
 .drk-btn {
     background-color: var(--clr-main);
@@ -158,18 +167,27 @@ main {
 
 /* Err404 */
 .error-page {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--brwn);
 }
 .error-page h1 {
-    color: crimson;
+    color: rgb(237, 37, 77);
     margin: 35px auto;
 }
 .error-page .sorry {
-    color: grey;
+    color: white;
 }
 .error-page p {
     font-size: 26px;
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: var(--brwn);
+    border-top: 5px solid rgb(237, 37, 77);
 }
+
